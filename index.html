@@ -12,7 +12,7 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 
-/* ===== FARBEN ===== */
+/* ===== COLORS ===== */
 :root{
   --bg:#0e1320;
   --panel:#111827;
@@ -25,10 +25,19 @@
 /* ===== BASE ===== */
 body{
   font-family:"Inter", system-ui, sans-serif;
-  background:linear-gradient(180deg, #0e1320 0%, #0b1020 100%);
+  background:linear-gradient(180deg,#0e1320,#0b1020);
   color:var(--text);
   line-height:1.85;
-  -webkit-text-size-adjust:100%;
+}
+
+/* ===== PROGRESS BAR ===== */
+.progress{
+  position:fixed;
+  top:0;left:0;
+  height:4px;
+  width:0%;
+  background:linear-gradient(90deg,var(--accent),#fff3c4);
+  z-index:999;
 }
 
 /* ===== LAYOUT ===== */
@@ -41,6 +50,13 @@ body{
 
 section{
   margin-bottom:160px;
+  opacity:0;
+  transform:translateY(32px);
+  transition:opacity .9s ease, transform .9s ease;
+}
+section.visible{
+  opacity:1;
+  transform:translateY(0);
 }
 
 /* ===== TYPO ===== */
@@ -49,21 +65,24 @@ h1{
   font-size:clamp(42px,6vw,58px);
   margin-bottom:28px;
 }
-
 h2{
   font-family:"Libre Baskerville", serif;
   font-size:clamp(28px,4.5vw,34px);
   margin-bottom:24px;
 }
-
 p{
   font-size:17px;
   margin-bottom:22px;
-  color:var(--text);
 }
+.muted{color:var(--muted)}
 
-.muted{
-  color:var(--muted);
+/* ===== INTRO QUESTION ===== */
+.intro{
+  margin-bottom:200px;
+}
+.intro p{
+  font-size:20px;
+  color:var(--accent);
 }
 
 /* ===== HERO ===== */
@@ -77,37 +96,45 @@ p{
   background:var(--panel);
   padding:70px;
   border:1px solid var(--border);
-  border-radius:18px;
+  border-radius:20px;
 }
 
 /* ===== LIST ===== */
-ul{
-  list-style:none;
-  margin:28px 0;
-  padding:0;
-}
-li{
-  margin-bottom:14px;
-}
+ul{list-style:none;margin:28px 0}
+li{margin-bottom:14px}
 
 /* ===== CTA ===== */
 .cta{
-  margin-top:80px;
   padding:80px;
   border:1px solid var(--border);
-  border-radius:22px;
+  border-radius:24px;
   background:#0b1020;
 }
-
 .cta a{
   display:inline-block;
   margin-top:34px;
-  padding:16px 36px;
-  background:var(--accent);
+  padding:16px 40px;
+  background:linear-gradient(135deg,#e5d3a1,#cbb07a);
   color:#020617;
   text-decoration:none;
   font-weight:600;
-  border-radius:14px;
+  border-radius:16px;
+  box-shadow:0 12px 30px rgba(214,185,140,.35);
+  transition:transform .25s ease, box-shadow .25s ease;
+}
+.cta a:hover{
+  transform:translateY(-2px);
+  box-shadow:0 20px 50px rgba(214,185,140,.55);
+}
+.cta a:active{
+  transform:translateY(0);
+}
+
+/* ===== END STATEMENT ===== */
+.end{
+  margin-top:120px;
+  font-size:18px;
+  color:var(--accent);
 }
 
 /* ===== FOOTER ===== */
@@ -127,7 +154,16 @@ footer{
 
 <body>
 
+<div class="progress" id="progress"></div>
+
 <div class="wrapper">
+
+<section class="intro visible">
+  <p>
+    Wenn du alles wüsstest, was du brauchst –  
+    wärst du dann wirklich noch hier?
+  </p>
+</section>
 
 <section class="hero">
   <h1>FOCUSFORMULA</h1>
@@ -137,7 +173,7 @@ footer{
   </p>
   <p style="margin-top:40px;color:var(--accent)">
     Vielleicht bist du nicht falsch abgebogen.<br>
-    Vielleicht bist du nur eine klare Entscheidung vom nächsten Schritt entfernt.
+    Vielleicht vermeidest du nur eine Entscheidung.
   </p>
 </section>
 
@@ -209,6 +245,12 @@ footer{
       findest du hier einen ruhigen Ausgangspunkt.
     </p>
     <a href="#">Zugang zum Dokument · 10,99 €</a>
+
+    <div class="end">
+      Menschen verändern nichts,
+      weil sie zu wenig wissen –
+      sondern weil sie Entscheidungen vermeiden.
+    </div>
   </div>
 </section>
 
@@ -217,6 +259,27 @@ footer{
 </footer>
 
 </div>
+
+<script>
+/* PROGRESS BAR */
+window.addEventListener("scroll",()=>{
+  const h=document.documentElement;
+  const sc=(h.scrollTop||document.body.scrollTop);
+  const max=h.scrollHeight-h.clientHeight;
+  document.getElementById("progress").style.width=(sc/max)*100+"%";
+});
+
+/* SCROLL REVEAL */
+const observer=new IntersectionObserver(e=>{
+  e.forEach(x=>{
+    if(x.isIntersecting){
+      x.target.classList.add("visible");
+      observer.unobserve(x.target);
+    }
+  });
+},{threshold:.15});
+document.querySelectorAll("section").forEach(s=>observer.observe(s));
+</script>
 
 </body>
 </html>
