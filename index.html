@@ -5,74 +5,64 @@
 <title>FOCUSFORMULA – Klarheit statt Kurse</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<!-- FONTS -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+
 <style>
-/* ---------------- RESET ---------------- */
-*{box-sizing:border-box;margin:0;padding:0}
+/* ================= RESET ================= */
+*{margin:0;padding:0;box-sizing:border-box}
 
-/* ---------------- FONTS ---------------- */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Libre+Baskerville:wght@400;700&display=swap');
+/* ================= ROOT ================= */
+:root{
+  --bg:#f6f5f2;
+  --text:#111827;
+  --muted:#6b7280;
+  --accent:#1e3a8a;
+  --panel:#ffffff;
+}
 
-/* ---------------- BASE ---------------- */
+/* ================= BASE ================= */
 body{
-  font-family:"Inter", sans-serif;
-  background:#f6f5f2;
-  color:#1f2937;
+  font-family:"Inter", system-ui, sans-serif;
+  background:var(--bg);
+  color:var(--text);
   line-height:1.7;
   overflow-x:hidden;
 }
 
-.wrapper{
-  max-width:1200px;
-  margin:auto;
-  padding:100px 60px;
-}
-
-/* ---------------- BACKGROUND MOTION ---------------- */
-.bg-lines{
+/* ================= BACKGROUND STRUCTURE ================= */
+.bg{
   position:fixed;
   inset:0;
   z-index:-1;
   background:
+    radial-gradient(1200px 600px at 20% -10%, rgba(30,58,138,.08), transparent 60%),
+    radial-gradient(900px 500px at 90% 10%, rgba(0,0,0,.06), transparent 55%),
     repeating-linear-gradient(
       -45deg,
-      rgba(30,58,138,0.04),
-      rgba(30,58,138,0.04) 1px,
+      rgba(0,0,0,.03),
+      rgba(0,0,0,.03) 1px,
       transparent 1px,
-      transparent 40px
+      transparent 42px
     );
-  animation:moveBg 40s linear infinite;
 }
 
-@keyframes moveBg{
-  from{background-position:0 0}
-  to{background-position:400px 400px}
+/* ================= LAYOUT ================= */
+.wrapper{
+  max-width:1200px;
+  margin:auto;
+  padding:120px 70px;
 }
 
-/* ---------------- TYPO ---------------- */
-h1{
-  font-family:"Libre Baskerville", serif;
-  font-size:52px;
-  margin-bottom:24px;
-}
-
-h2{
-  font-family:"Libre Baskerville", serif;
-  font-size:32px;
-  margin-bottom:22px;
-}
-
-p{
-  font-size:18px;
-  max-width:760px;
-  margin-bottom:18px;
-}
-
-/* ---------------- SECTIONS ---------------- */
 section{
-  margin-bottom:140px;
+  margin-bottom:160px;
   opacity:0;
-  transform:translateY(40px);
-  transition:all .9s ease;
+  transform:translateY(32px);
+  transition:
+    opacity .8s cubic-bezier(.22,.61,.36,1),
+    transform .8s cubic-bezier(.22,.61,.36,1);
 }
 
 section.visible{
@@ -80,50 +70,77 @@ section.visible{
   transform:translateY(0);
 }
 
-/* ---------------- HERO ---------------- */
+/* ================= TYPO ================= */
+h1{
+  font-family:"Libre Baskerville", serif;
+  font-size:56px;
+  letter-spacing:-.02em;
+  margin-bottom:24px;
+}
+
+h2{
+  font-family:"Libre Baskerville", serif;
+  font-size:34px;
+  margin-bottom:24px;
+}
+
+p{
+  font-size:18px;
+  max-width:780px;
+  margin-bottom:18px;
+  color:#1f2937;
+}
+
+small{
+  font-size:14px;
+  color:var(--muted);
+}
+
+/* ================= HERO ================= */
 .hero{
-  min-height:70vh;
+  min-height:75vh;
   display:flex;
   flex-direction:column;
   justify-content:center;
 }
 
-.hero span{
-  display:block;
-  margin-top:20px;
+.hero .sub{
+  margin-top:28px;
   font-size:18px;
-  color:#4b5563;
+  color:var(--muted);
 }
 
-/* ---------------- BOX ---------------- */
-.box{
-  background:#ffffff;
-  padding:50px;
-  border-left:4px solid #1e3a8a;
-  box-shadow:0 30px 80px rgba(0,0,0,.08);
-  transition:transform .4s ease;
+/* ================= PANEL ================= */
+.panel{
+  background:var(--panel);
+  padding:64px;
+  border-left:4px solid var(--accent);
+  box-shadow:0 40px 120px rgba(0,0,0,.08);
+  transition:transform .4s ease, box-shadow .4s ease;
 }
 
-.box:hover{
+.panel:hover{
   transform:translateY(-4px);
+  box-shadow:0 60px 160px rgba(0,0,0,.12);
 }
 
-/* ---------------- LIST ---------------- */
+/* ================= LIST ================= */
 ul{
   padding-left:22px;
+  margin-top:16px;
 }
 
 li{
-  margin-bottom:12px;
+  margin-bottom:14px;
   font-size:17px;
 }
 
-/* ---------------- CTA ---------------- */
+/* ================= CTA ================= */
 .cta{
-  background:#111827;
+  background:#0f172a;
   color:#ffffff;
-  padding:70px;
-  box-shadow:0 40px 120px rgba(0,0,0,.3);
+  padding:80px;
+  box-shadow:0 60px 160px rgba(0,0,0,.35);
 }
 
 .cta h2{
@@ -132,40 +149,42 @@ li{
 
 .button{
   display:inline-block;
-  margin-top:30px;
-  padding:16px 34px;
+  margin-top:36px;
+  padding:18px 42px;
   background:#ffffff;
-  color:#111827;
+  color:#0f172a;
   text-decoration:none;
   font-weight:600;
-  transition:all .3s ease;
+  letter-spacing:.02em;
+  transition:transform .3s ease, box-shadow .3s ease;
 }
 
 .button:hover{
   transform:translateY(-3px);
-  box-shadow:0 10px 30px rgba(255,255,255,.3);
+  box-shadow:0 20px 50px rgba(255,255,255,.25);
 }
 
-/* ---------------- FOOTER ---------------- */
+/* ================= FOOTER ================= */
 footer{
   text-align:center;
   font-size:13px;
-  color:#6b7280;
+  color:var(--muted);
   margin-top:200px;
 }
 
-/* ---------------- RESPONSIVE ---------------- */
+/* ================= RESPONSIVE ================= */
 @media(max-width:900px){
-  .wrapper{padding:80px 30px}
-  h1{font-size:40px}
-  h2{font-size:26px}
+  .wrapper{padding:90px 28px}
+  h1{font-size:42px}
+  h2{font-size:28px}
+  .panel,.cta{padding:48px}
 }
 </style>
 </head>
 
 <body>
 
-<div class="bg-lines"></div>
+<div class="bg"></div>
 
 <div class="wrapper">
 
@@ -176,34 +195,38 @@ footer{
     Eine ehrliche Entscheidungshilfe<br>
     für Menschen, die keine Kurse mehr kaufen wollen.
   </p>
-  <span>Keine Geheimnisse. Keine Abkürzungen. Kein Bullshit.</span>
+  <div class="sub">
+    Keine Geheimnisse. Keine Abkürzungen. Kein Bullshit.
+  </div>
 </section>
 
 <!-- PROBLEM -->
 <section>
   <h2>Warum sich alles gleich anfühlt</h2>
   <p>
-    Du hast nicht zu wenig Wissen.
-    Du hast zu viele Optionen – ohne Einordnung.
+    Du hast kein Wissensproblem.
+    Du hast ein Einordnungsproblem.
   </p>
   <p>
-    Genau hier scheitern die meisten.
+    Zu viele Modelle. Zu viele Meinungen.
+    Zu wenig Klarheit, was zu dir passt.
   </p>
 </section>
 
 <!-- WAS ES IST -->
 <section>
-  <div class="box">
+  <div class="panel">
     <h2>Was dieses Dokument ist</h2>
     <ul>
-      <li>keine Anleitung</li>
-      <li>kein Erfolgsversprechen</li>
       <li>kein Kurs</li>
+      <li>kein Blueprint</li>
+      <li>kein Erfolgsversprechen</li>
       <li>keine Geheimnisse</li>
     </ul>
     <p>
-      Es ist eine nüchterne Entscheidungshilfe,
-      damit du aufhörst, ständig neu anzufangen.
+      Es ist ein nüchternes, strukturiertes Dokument,
+      das dir hilft, eine Entscheidung zu treffen
+      – und dabei zu bleiben.
     </p>
   </div>
 </section>
@@ -227,8 +250,8 @@ footer{
       ist dieses Dokument nichts für dich.
     </p>
     <p>
-      Wenn du eine Entscheidung treffen willst,
-      schon.
+      Wenn du aufhören willst, ständig neu anzufangen,
+      kann es dir helfen.
     </p>
     <a href="#" class="button">Jetzt lesen – 10,99 €</a>
   </div>
@@ -241,18 +264,17 @@ footer{
 </div>
 
 <script>
-/* -------- SCROLL FADE IN -------- */
-const sections = document.querySelectorAll("section");
-
+/* ===== SCROLL REVEAL (PRO TIMING) ===== */
 const observer = new IntersectionObserver(entries=>{
-  entries.forEach(entry=>{
-    if(entry.isIntersecting){
-      entry.target.classList.add("visible");
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add("visible");
+      observer.unobserve(e.target);
     }
   });
-},{threshold:0.15});
+},{threshold:0.18});
 
-sections.forEach(sec=>observer.observe(sec));
+document.querySelectorAll("section").forEach(s=>observer.observe(s));
 </script>
 
 </body>
