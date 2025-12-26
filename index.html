@@ -3,197 +3,257 @@
 <head>
 <meta charset="UTF-8">
 <title>FOCUSFORMULA – Klarheit statt Kurse</title>
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
+/* ---------------- RESET ---------------- */
+*{box-sizing:border-box;margin:0;padding:0}
+
+/* ---------------- FONTS ---------------- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Libre+Baskerville:wght@400;700&display=swap');
+
+/* ---------------- BASE ---------------- */
 body{
-  margin:0;
-  font-family:"Inter", system-ui, sans-serif;
+  font-family:"Inter", sans-serif;
   background:#f6f5f2;
   color:#1f2937;
   line-height:1.7;
+  overflow-x:hidden;
 }
 
 .wrapper{
-  max-width:1100px;
+  max-width:1200px;
   margin:auto;
-  padding:90px 60px;
+  padding:100px 60px;
 }
 
-/* TYPO */
+/* ---------------- BACKGROUND MOTION ---------------- */
+.bg-lines{
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  background:
+    repeating-linear-gradient(
+      -45deg,
+      rgba(30,58,138,0.04),
+      rgba(30,58,138,0.04) 1px,
+      transparent 1px,
+      transparent 40px
+    );
+  animation:moveBg 40s linear infinite;
+}
+
+@keyframes moveBg{
+  from{background-position:0 0}
+  to{background-position:400px 400px}
+}
+
+/* ---------------- TYPO ---------------- */
 h1{
-  font-size:44px;
-  font-weight:700;
-  margin-bottom:20px;
+  font-family:"Libre Baskerville", serif;
+  font-size:52px;
+  margin-bottom:24px;
 }
 
 h2{
-  font-size:28px;
-  margin-top:80px;
-  margin-bottom:20px;
+  font-family:"Libre Baskerville", serif;
+  font-size:32px;
+  margin-bottom:22px;
 }
 
 p{
-  font-size:17px;
+  font-size:18px;
+  max-width:760px;
   margin-bottom:18px;
-  max-width:780px;
 }
 
-.section{
-  margin-bottom:100px;
+/* ---------------- SECTIONS ---------------- */
+section{
+  margin-bottom:140px;
+  opacity:0;
+  transform:translateY(40px);
+  transition:all .9s ease;
 }
 
-hr{
-  border:none;
-  border-top:1px solid #d1d5db;
-  margin:80px 0;
+section.visible{
+  opacity:1;
+  transform:translateY(0);
 }
 
-/* BOXES */
+/* ---------------- HERO ---------------- */
+.hero{
+  min-height:70vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+.hero span{
+  display:block;
+  margin-top:20px;
+  font-size:18px;
+  color:#4b5563;
+}
+
+/* ---------------- BOX ---------------- */
 .box{
   background:#ffffff;
-  padding:40px;
+  padding:50px;
   border-left:4px solid #1e3a8a;
-  box-shadow:0 20px 60px rgba(0,0,0,.06);
-  max-width:800px;
+  box-shadow:0 30px 80px rgba(0,0,0,.08);
+  transition:transform .4s ease;
 }
 
-.list{
-  padding-left:20px;
+.box:hover{
+  transform:translateY(-4px);
 }
 
-.list li{
+/* ---------------- LIST ---------------- */
+ul{
+  padding-left:22px;
+}
+
+li{
   margin-bottom:12px;
-  font-size:16px;
+  font-size:17px;
 }
 
-/* CTA */
+/* ---------------- CTA ---------------- */
 .cta{
   background:#111827;
   color:#ffffff;
-  padding:50px;
-  max-width:800px;
+  padding:70px;
+  box-shadow:0 40px 120px rgba(0,0,0,.3);
 }
 
 .cta h2{
   color:#ffffff;
-  margin-top:0;
 }
 
 .button{
   display:inline-block;
-  margin-top:20px;
-  padding:14px 28px;
+  margin-top:30px;
+  padding:16px 34px;
   background:#ffffff;
   color:#111827;
   text-decoration:none;
   font-weight:600;
+  transition:all .3s ease;
+}
+
+.button:hover{
+  transform:translateY(-3px);
+  box-shadow:0 10px 30px rgba(255,255,255,.3);
+}
+
+/* ---------------- FOOTER ---------------- */
+footer{
+  text-align:center;
+  font-size:13px;
+  color:#6b7280;
+  margin-top:200px;
+}
+
+/* ---------------- RESPONSIVE ---------------- */
+@media(max-width:900px){
+  .wrapper{padding:80px 30px}
+  h1{font-size:40px}
+  h2{font-size:26px}
 }
 </style>
 </head>
 
 <body>
 
+<div class="bg-lines"></div>
+
 <div class="wrapper">
 
 <!-- HERO -->
-<section class="section">
+<section class="hero">
   <h1>FOCUSFORMULA</h1>
   <p>
     Eine ehrliche Entscheidungshilfe<br>
     für Menschen, die keine Kurse mehr kaufen wollen.
   </p>
+  <span>Keine Geheimnisse. Keine Abkürzungen. Kein Bullshit.</span>
 </section>
 
-<hr>
-
 <!-- PROBLEM -->
-<section class="section">
+<section>
   <h2>Warum sich alles gleich anfühlt</h2>
   <p>
-    Online gibt es unendlich viele Business-Modelle.
-    Und trotzdem bleiben viele hängen.
+    Du hast nicht zu wenig Wissen.
+    Du hast zu viele Optionen – ohne Einordnung.
   </p>
   <p>
-    Nicht, weil sie zu wenig wissen –
-    sondern weil ihnen niemand hilft, richtig einzuordnen.
+    Genau hier scheitern die meisten.
   </p>
 </section>
 
 <!-- WAS ES IST -->
-<section class="section">
+<section>
   <div class="box">
     <h2>Was dieses Dokument ist</h2>
-    <ul class="list">
-      <li>keine Schritt-für-Schritt-Anleitung</li>
-      <li>kein Blueprint</li>
+    <ul>
+      <li>keine Anleitung</li>
       <li>kein Erfolgsversprechen</li>
+      <li>kein Kurs</li>
       <li>keine Geheimnisse</li>
     </ul>
     <p>
-      Es ist ein strukturiertes Dokument,
-      das dir hilft zu verstehen,
-      welches Business-Modell zu dir passt –
-      und welches nicht.
+      Es ist eine nüchterne Entscheidungshilfe,
+      damit du aufhörst, ständig neu anzufangen.
     </p>
   </div>
 </section>
 
-<hr>
-
 <!-- FÜR WEN -->
-<section class="section">
+<section>
   <h2>Für wen das hier ist</h2>
-  <ul class="list">
-    <li>du hast mehrere Modelle ausprobiert</li>
-    <li>du bist müde von Kurs-Versprechen</li>
-    <li>du willst eine ehrliche Einordnung</li>
+  <ul>
+    <li>du hast schon mehrere Modelle ausprobiert</li>
+    <li>du bist müde von Hype & Screenshots</li>
+    <li>du willst Klarheit statt Motivation</li>
   </ul>
-
-  <h2>Für wen es nichts ist</h2>
-  <ul class="list">
-    <li>du suchst eine Abkürzung</li>
-    <li>du willst schnelle Ergebnisse</li>
-    <li>du willst gesagt bekommen, was du tun sollst</li>
-  </ul>
-</section>
-
-<hr>
-
-<!-- ERGEBNIS -->
-<section class="section">
-  <h2>Was du nach dem Lesen hast</h2>
-  <p>
-    Keine Garantie.
-    Keine Sicherheit.
-  </p>
-  <p>
-    Aber:
-    Klarheit darüber,
-    welches Modell du verfolgen solltest –
-    und warum.
-  </p>
 </section>
 
 <!-- CTA -->
-<section class="section">
+<section>
   <div class="cta">
     <h2>FOCUSFORMULA</h2>
     <p>
-      Wenn du noch nach dem besten Business suchst,
+      Wenn du nach dem besten Business suchst,
       ist dieses Dokument nichts für dich.
     </p>
     <p>
-      Wenn du aufhören willst, ständig neu anzufangen,
-      kann es dir helfen.
+      Wenn du eine Entscheidung treffen willst,
+      schon.
     </p>
-
     <a href="#" class="button">Jetzt lesen – 10,99 €</a>
   </div>
 </section>
 
+<footer>
+© 2025 FOCUSFORMULA · Klarheit statt Kurse
+</footer>
+
 </div>
+
+<script>
+/* -------- SCROLL FADE IN -------- */
+const sections = document.querySelectorAll("section");
+
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add("visible");
+    }
+  });
+},{threshold:0.15});
+
+sections.forEach(sec=>observer.observe(sec));
+</script>
 
 </body>
 </html>
