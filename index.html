@@ -5,14 +5,15 @@
 <title>FOCUSFORMULA</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@400;500;600&family=IBM+Plex+Serif:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 
-/* ================= FARBSYSTEM ================= */
+/* ================= COLORS ================= */
 :root{
   --green-dark:#0b1f17;
   --green-mid:#0f2a20;
@@ -45,7 +46,7 @@ body{
   height:4px;
   width:0%;
   background:linear-gradient(90deg,var(--gold),var(--gold-soft));
-  box-shadow:0 0 12px rgba(214,185,140,.6);
+  box-shadow:0 0 14px rgba(214,185,140,.7);
   z-index:999;
 }
 
@@ -69,24 +70,33 @@ section.visible{
 }
 
 /* ================= TYPO ================= */
-h1{
+h1,h2{
   font-family:"Libre Baskerville", serif;
+}
+
+h1{
   font-size:clamp(42px,6vw,58px);
   margin-bottom:28px;
 }
-
 h2{
-  font-family:"Libre Baskerville", serif;
   font-size:clamp(28px,4.5vw,34px);
   margin-bottom:24px;
 }
-
 p{
   font-size:17px;
   margin-bottom:22px;
 }
 
-.muted{color:var(--muted)}
+/* Small / Meta Text */
+.muted,
+footer,
+.trust,
+small{
+  font-family:"IBM Plex Serif", serif;
+  color:var(--muted);
+  font-size:14.5px;
+  letter-spacing:.2px;
+}
 
 /* ================= INTRO ================= */
 .intro p{
@@ -131,13 +141,11 @@ li{margin-bottom:14px}
   text-decoration:none;
   font-weight:600;
   border-radius:999px;
-
   box-shadow:
     0 14px 40px rgba(214,185,140,.45),
     0 0 0 rgba(22,60,45,0);
-
   animation:goldBreath 3.8s ease-in-out infinite;
-  transition:transform .25s ease, box-shadow .25s ease, filter .25s ease;
+  transition:transform .25s ease, box-shadow .25s ease;
 }
 
 .cta a:hover{
@@ -145,11 +153,6 @@ li{margin-bottom:14px}
   box-shadow:
     0 22px 60px rgba(214,185,140,.7),
     0 0 28px rgba(22,60,45,.85);
-  filter:brightness(1.05);
-}
-
-.cta a:active{
-  transform:translateY(0);
 }
 
 @keyframes goldBreath{
@@ -165,6 +168,12 @@ li{margin-bottom:14px}
   }
 }
 
+/* ================= TRUST ================= */
+.trust{
+  margin-top:28px;
+  line-height:1.6;
+}
+
 /* ================= END ================= */
 .end{
   margin-top:120px;
@@ -175,14 +184,28 @@ li{margin-bottom:14px}
 /* ================= FOOTER ================= */
 footer{
   margin-top:180px;
-  font-size:13px;
-  color:var(--muted);
 }
 
-/* ================= MOBILE ================= */
+/* ================= MOBILE CTA ================= */
+.mobile-cta{
+  position:fixed;
+  bottom:16px;
+  left:50%;
+  transform:translateX(-50%);
+  background:linear-gradient(135deg,var(--gold),var(--gold-soft));
+  color:#0b1f17;
+  padding:14px 28px;
+  border-radius:999px;
+  font-weight:600;
+  box-shadow:0 12px 40px rgba(214,185,140,.5);
+  display:none;
+  z-index:998;
+}
+
 @media(max-width:768px){
   .wrapper{padding:100px 18px}
   .panel,.cta{padding:44px}
+  .mobile-cta{display:block}
 }
 </style>
 </head>
@@ -190,6 +213,7 @@ footer{
 <body>
 
 <div class="progress" id="progress"></div>
+<a href="#" class="mobile-cta">Zugang</a>
 
 <div class="wrapper">
 
@@ -214,20 +238,9 @@ footer{
 
 <section>
   <h2>Warum dieses Dokument existiert</h2>
-  <p>
-    Online gibt es unzählige Wege, Geld zu verdienen.
-    Und trotzdem bleiben viele Menschen stehen.
-  </p>
-  <p>
-    Nicht, weil sie zu wenig wissen.
-    Sondern weil sie zu viel gehört haben – ohne Einordnung.
-  </p>
-  <p>
-    Dieses Dokument ist entstanden.
-    Nicht aus einer Erfolgsstory,
-    sondern aus der Beobachtung,
-    dass Orientierung heute wertvoller ist als Information.
-  </p>
+  <p>Online gibt es unzählige Wege, Geld zu verdienen. Und trotzdem bleiben viele Menschen stehen.</p>
+  <p>Nicht, weil sie zu wenig wissen. Sondern weil sie zu viel gehört haben – ohne Einordnung.</p>
+  <p>Dieses Dokument ist entstanden. Nicht aus einer Erfolgsstory, sondern aus der Beobachtung, dass Orientierung heute wertvoller ist als Information.</p>
 </section>
 
 <section>
@@ -239,51 +252,30 @@ footer{
       <li>kein Erfolgsversprechen</li>
       <li>keine Geheimnisse</li>
     </ul>
-    <p>
-      Es ist ein strukturiertes Dokument,
-      das dir hilft zu verstehen,
-      welches Business-Modell zu dir passt
-      – und warum andere dich immer wieder leer zurücklassen.
-    </p>
-    <p>
-      Es will dich nicht motivieren.
-      Es will dich ernst nehmen.
-    </p>
+    <p>Es ist ein strukturiertes Dokument, das dir hilft zu verstehen, welches Business-Modell zu dir passt – und warum andere dich immer wieder leer zurücklassen.</p>
+    <p>Es will dich nicht motivieren. Es will dich ernst nehmen.</p>
   </div>
 </section>
 
 <section>
   <h2>Für wen es gedacht ist</h2>
-  <p>
-    Für Menschen, die bereits gesucht haben.
-    Die gemerkt haben,
-    dass sie nicht an mangelnder Disziplin scheitern,
-    sondern an fehlender Klarheit.
-  </p>
-  <p>
-    Für Menschen, die aufhören wollen,
-    ständig neu anzufangen –
-    und bereit sind, eine Entscheidung zu tragen.
-  </p>
+  <p>Für Menschen, die bereits gesucht haben. Die gemerkt haben, dass sie nicht an mangelnder Disziplin scheitern, sondern an fehlender Klarheit.</p>
+  <p>Für Menschen, die aufhören wollen, ständig neu anzufangen – und bereit sind, eine Entscheidung zu tragen.</p>
 </section>
 
 <section>
   <div class="cta">
     <h2>Zugang</h2>
-    <p>
-      Dieses Dokument verspricht nichts.
-      Es ordnet ein.
-    </p>
-    <p>
-      Wenn du bereit bist,
-      Verantwortung für eine Entscheidung zu übernehmen,
-      findest du hier einen ruhigen Ausgangspunkt.
-    </p>
+    <p>Dieses Dokument verspricht nichts. Es ordnet ein.</p>
+    <p>Wenn du bereit bist, Verantwortung für eine Entscheidung zu übernehmen, findest du hier einen ruhigen Ausgangspunkt.</p>
     <a href="#">Zugang zum Dokument · 10,99 €</a>
 
+    <div class="trust">
+      Sofortiger Download · Einmalzahlung · Kein Abo · Kein Upsell
+    </div>
+
     <div class="end">
-      Menschen verändern nichts,
-      weil sie zu wenig wissen –  
+      Menschen verändern nichts, weil sie zu wenig wissen –  
       sondern weil sie Entscheidungen vermeiden.
     </div>
   </div>
