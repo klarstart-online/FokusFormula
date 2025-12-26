@@ -7,54 +7,35 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 
-/* ================= ROOT ================= */
+/* ================= FARBSYSTEM ================= */
 :root{
-  --text:#111827;
-  --muted:#374151;
-  --accent:#7c3aed;
-  --panel-bg:rgba(255,255,255,.88);
-  --panel-border:rgba(0,0,0,.08);
+  --green-dark:#0b1f17;
+  --green-mid:#0f2a20;
+  --green-soft:#163c2d;
+
+  --gold:#d6b98c;
+  --gold-soft:#e8d8b0;
+
+  --text:#f5f5f4;
+  --muted:#9ca3af;
+  --border:rgba(255,255,255,.08);
 }
 
 /* ================= BASE ================= */
 body{
   font-family:"Inter", system-ui, sans-serif;
-  color:var(--text);
-  line-height:1.8;
-  overflow-x:hidden;
-  background:#f8fafc;
-}
-
-/* ================= ANIMATED BACKGROUND ================= */
-.bg{
-  position:fixed;
-  inset:0;
-  z-index:-3;
   background:
-    radial-gradient(40vw 40vw at 10% 20%, #a78bfa, transparent 60%),
-    radial-gradient(45vw 45vw at 80% 10%, #60a5fa, transparent 60%),
-    radial-gradient(50vw 50vw at 50% 80%, #34d399, transparent 60%),
-    linear-gradient(180deg,#f8fafc,#eef2ff);
-  animation:bgMove 25s ease-in-out infinite alternate;
-}
-
-@keyframes bgMove{
-  0%{filter:hue-rotate(0deg)}
-  100%{filter:hue-rotate(12deg)}
-}
-
-/* Grain for premium feel */
-.bg::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-  pointer-events:none;
+    radial-gradient(1200px 600px at 20% 10%, #163c2d 0%, transparent 60%),
+    radial-gradient(900px 500px at 80% 20%, #0f2a20 0%, transparent 55%),
+    linear-gradient(180deg, var(--green-dark), var(--green-mid));
+  color:var(--text);
+  line-height:1.85;
+  overflow-x:hidden;
 }
 
 /* ================= PROGRESS ================= */
@@ -63,7 +44,8 @@ body{
   top:0;left:0;
   height:4px;
   width:0%;
-  background:linear-gradient(90deg,#7c3aed,#06b6d4);
+  background:linear-gradient(90deg,var(--gold),var(--gold-soft));
+  box-shadow:0 0 12px rgba(214,185,140,.6);
   z-index:999;
 }
 
@@ -109,23 +91,22 @@ p{
 /* ================= INTRO ================= */
 .intro p{
   font-size:20px;
-  color:#4c1d95;
+  color:var(--gold);
 }
 
 /* ================= HERO ================= */
 .hero{
   padding-bottom:120px;
-  border-bottom:1px solid var(--panel-border);
+  border-bottom:1px solid var(--border);
 }
 
 /* ================= PANEL ================= */
 .panel{
-  background:var(--panel-bg);
+  background:rgba(15,42,32,.85);
   padding:70px;
   border-radius:26px;
-  border:1px solid var(--panel-border);
-  backdrop-filter:blur(12px);
-  box-shadow:0 40px 120px rgba(0,0,0,.12);
+  border:1px solid var(--border);
+  box-shadow:0 40px 120px rgba(0,0,0,.55);
 }
 
 /* ================= LIST ================= */
@@ -134,36 +115,61 @@ li{margin-bottom:14px}
 
 /* ================= CTA ================= */
 .cta{
-  background:rgba(255,255,255,.92);
+  background:rgba(11,31,23,.9);
   padding:90px;
   border-radius:30px;
-  border:1px solid var(--panel-border);
-  box-shadow:0 50px 140px rgba(0,0,0,.15);
+  border:1px solid var(--border);
+  box-shadow:0 60px 160px rgba(0,0,0,.65);
 }
 
 .cta a{
   display:inline-block;
   margin-top:36px;
   padding:18px 46px;
-  background:linear-gradient(135deg,#7c3aed,#06b6d4);
-  color:#ffffff;
+  background:linear-gradient(135deg,var(--gold),var(--gold-soft));
+  color:#0b1f17;
   text-decoration:none;
   font-weight:600;
   border-radius:999px;
-  box-shadow:0 16px 40px rgba(124,58,237,.35);
-  transition:transform .25s ease, box-shadow .25s ease;
+
+  box-shadow:
+    0 14px 40px rgba(214,185,140,.45),
+    0 0 0 rgba(22,60,45,0);
+
+  animation:goldBreath 3.8s ease-in-out infinite;
+  transition:transform .25s ease, box-shadow .25s ease, filter .25s ease;
 }
 
 .cta a:hover{
   transform:translateY(-2px);
-  box-shadow:0 26px 60px rgba(124,58,237,.45);
+  box-shadow:
+    0 22px 60px rgba(214,185,140,.7),
+    0 0 28px rgba(22,60,45,.85);
+  filter:brightness(1.05);
+}
+
+.cta a:active{
+  transform:translateY(0);
+}
+
+@keyframes goldBreath{
+  0%,100%{
+    box-shadow:
+      0 14px 40px rgba(214,185,140,.45),
+      0 0 0 rgba(22,60,45,0);
+  }
+  50%{
+    box-shadow:
+      0 22px 55px rgba(214,185,140,.65),
+      0 0 22px rgba(22,60,45,.65);
+  }
 }
 
 /* ================= END ================= */
 .end{
   margin-top:120px;
   font-size:18px;
-  color:#4c1d95;
+  color:var(--gold);
 }
 
 /* ================= FOOTER ================= */
@@ -183,7 +189,6 @@ footer{
 
 <body>
 
-<div class="bg"></div>
 <div class="progress" id="progress"></div>
 
 <div class="wrapper">
@@ -201,7 +206,7 @@ footer{
     Eine ehrliche Entscheidungshilfe für Menschen,<br>
     die keine Kurse mehr kaufen wollen.
   </p>
-  <p style="margin-top:40px;color:#4c1d95">
+  <p style="margin-top:40px;color:var(--gold)">
     Vielleicht bist du nicht falsch abgebogen.<br>
     Vielleicht vermeidest du nur eine Entscheidung.
   </p>
