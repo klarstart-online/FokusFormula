@@ -12,47 +12,45 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 
-/* ===== FARBSYSTEM (BLEIBT RUHIG) ===== */
+/* ================= FARBSYSTEM ================= */
 :root{
-  --bg:#0b1220;
-  --panel:rgba(17,26,46,.85);
+  --bg1:#0b1220;
+  --bg2:#0f1a30;
+  --bg3:#020617;
+  --panel:rgba(20,28,48,.82);
   --text:#f3f4f6;
   --muted:#9ca3af;
   --accent:#d6b98c;
   --border:rgba(255,255,255,.08);
 }
 
-/* ===== BASE ===== */
+/* ================= BASE ================= */
 body{
   font-family:"Inter", system-ui, sans-serif;
   color:var(--text);
-  line-height:1.8;
-  background:#000;
+  line-height:1.85;
   overflow-x:hidden;
+  background:#000;
 }
 
-/* ===== BACKGROUND IMAGE + PARALLAX ===== */
+/* ================= DYNAMIC BACKGROUND ================= */
 .background{
   position:fixed;
   inset:0;
   z-index:-2;
   background:
-    linear-gradient(to bottom, rgba(11,18,32,.9), rgba(11,18,32,.95)),
-    url("background.jpg") center / cover no-repeat;
-  transform:translateY(0);
-  transition:transform .2s linear;
+    radial-gradient(1200px 600px at 20% 10%, #182446 0%, transparent 60%),
+    radial-gradient(900px 500px at 80% 20%, #101a33 0%, transparent 55%),
+    linear-gradient(180deg, var(--bg1), var(--bg2), var(--bg3));
+  animation:bgFloat 40s ease-in-out infinite;
 }
 
-/* ===== SOFT GRAIN ===== */
-.background::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-  pointer-events:none;
+@keyframes bgFloat{
+  0%,100%{filter:brightness(1)}
+  50%{filter:brightness(1.05)}
 }
 
-/* ===== LAYOUT ===== */
+/* ================= LAYOUT ================= */
 .wrapper{
   max-width:1200px;
   margin:auto;
@@ -63,108 +61,123 @@ section{
   margin-bottom:160px;
   opacity:0;
   transform:translateY(40px);
-  transition:opacity 1s ease, transform 1s ease;
+  transition:opacity 1.1s cubic-bezier(.22,.61,.36,1),
+             transform 1.1s cubic-bezier(.22,.61,.36,1);
 }
-
 section.visible{
   opacity:1;
   transform:translateY(0);
 }
 
-/* ===== TYPO ===== */
+/* ================= TYPO ================= */
 h1{
   font-family:"Libre Baskerville", serif;
   font-size:clamp(42px,6vw,64px);
   margin-bottom:28px;
-  overflow:hidden;
 }
 
 h2{
   font-family:"Libre Baskerville", serif;
   font-size:clamp(28px,4.5vw,36px);
   margin-bottom:22px;
-  overflow:hidden;
 }
 
 p{
   font-size:17px;
   max-width:780px;
-  margin-bottom:20px;
+  margin-bottom:22px;
 }
 
 .muted{color:var(--muted)}
 
-/* ===== TEXT REVEAL ===== */
-.reveal span{
-  display:inline-block;
-  transform:translateY(120%);
-  animation:reveal 1.1s cubic-bezier(.22,.61,.36,1) forwards;
-}
-@keyframes reveal{to{transform:translateY(0)}}
-
-/* ===== HERO ===== */
+/* ================= HERO ================= */
 .hero{
   padding-bottom:120px;
   border-bottom:1px solid var(--border);
 }
 
-/* ===== PANEL ===== */
+/* ================= PANELS ================= */
 .panel{
   background:var(--panel);
-  padding:64px;
+  padding:70px;
   border:1px solid var(--border);
-  box-shadow:0 40px 120px rgba(0,0,0,.4);
+  border-radius:18px;
+  box-shadow:
+    0 40px 120px rgba(0,0,0,.45),
+    inset 0 1px 0 rgba(255,255,255,.04);
 }
 
-/* ===== LIST ===== */
+/* ================= LIST ================= */
 ul{padding-left:22px;margin:22px 0}
 li{margin-bottom:14px}
 
-/* ===== CTA ===== */
+/* ================= CTA ================= */
 .cta{
-  background:linear-gradient(180deg, rgba(17,26,46,.95), rgba(5,8,16,.95));
-  padding:80px;
+  background:linear-gradient(180deg, rgba(25,34,62,.95), rgba(5,8,16,.98));
+  padding:90px;
+  border-radius:22px;
   border:1px solid var(--border);
+  box-shadow:0 60px 180px rgba(0,0,0,.6);
 }
 
+/* ================= BUTTON ================= */
 .cta a{
   display:inline-block;
-  margin-top:28px;
-  padding:14px 30px;
-  background:var(--accent);
+  margin-top:34px;
+  padding:16px 38px;
+  background:linear-gradient(135deg, #e5d3a1, #cbb07a);
   color:#020617;
   text-decoration:none;
   font-weight:600;
+  border-radius:14px;
+  box-shadow:
+    0 10px 30px rgba(214,185,140,.35),
+    inset 0 1px 0 rgba(255,255,255,.5);
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease,
+    filter .25s ease;
 }
 
-/* ===== FOOTER ===== */
+.cta a:hover{
+  transform:translateY(-2px);
+  box-shadow:
+    0 18px 45px rgba(214,185,140,.5),
+    inset 0 1px 0 rgba(255,255,255,.7);
+  filter:brightness(1.05);
+}
+
+.cta a:active{
+  transform:translateY(0);
+}
+
+/* ================= FOOTER ================= */
 footer{
   margin-top:180px;
   font-size:13px;
   color:var(--muted);
 }
 
-/* ===== MOBILE ===== */
+/* ================= MOBILE ================= */
 @media(max-width:768px){
   .wrapper{padding:100px 20px}
-  .panel,.cta{padding:40px}
+  .panel,.cta{padding:44px}
 }
 </style>
 </head>
 
 <body>
 
-<div class="background" id="bg"></div>
+<div class="background"></div>
 
 <div class="wrapper">
 
 <section class="hero visible">
-  <h1 class="reveal"><span>FOCUSFORMULA</span></h1>
-  <p class="muted reveal"><span>
+  <h1>FOCUSFORMULA</h1>
+  <p class="muted">
     Eine ehrliche Entscheidungshilfe für Menschen,<br>
     die keine Kurse mehr kaufen wollen.
-  </span></p>
-
+  </p>
   <p style="margin-top:40px;color:var(--accent)">
     Vielleicht bist du nicht falsch abgebogen.<br>
     Vielleicht bist du nur eine klare Entscheidung vom nächsten Schritt entfernt.
@@ -172,7 +185,7 @@ footer{
 </section>
 
 <section>
-  <h2 class="reveal"><span>Warum dieses Dokument existiert</span></h2>
+  <h2>Warum dieses Dokument existiert</h2>
   <p>
     Online gibt es unzählige Wege, Geld zu verdienen.
     Und trotzdem bleiben viele Menschen stehen.
@@ -191,7 +204,7 @@ footer{
 
 <section>
   <div class="panel">
-    <h2 class="reveal"><span>Was es ist – und was nicht</span></h2>
+    <h2>Was es ist – und was nicht</h2>
     <ul>
       <li>kein Kurs</li>
       <li>keine Anleitung</li>
@@ -212,7 +225,7 @@ footer{
 </section>
 
 <section>
-  <h2 class="reveal"><span>Für wen es gedacht ist</span></h2>
+  <h2>Für wen es gedacht ist</h2>
   <p>
     Für Menschen, die bereits gesucht haben.
     Die gemerkt haben,
@@ -228,7 +241,7 @@ footer{
 
 <section>
   <div class="cta">
-    <h2 class="reveal"><span>Zugang</span></h2>
+    <h2>Zugang</h2>
     <p>
       Dieses Dokument verspricht nichts.
       Es ordnet ein.
@@ -259,12 +272,6 @@ const observer=new IntersectionObserver(e=>{
   });
 },{threshold:.15});
 document.querySelectorAll("section").forEach(s=>observer.observe(s));
-
-/* PARALLAX BACKGROUND */
-window.addEventListener("scroll",()=>{
-  document.getElementById("bg").style.transform=
-    `translateY(${window.scrollY * 0.08}px)`;
-});
 </script>
 
 </body>
