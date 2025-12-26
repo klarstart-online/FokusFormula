@@ -5,6 +5,7 @@
 <title>FOCUSFORMULA</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@400;500;600&family=IBM+Plex+Serif:wght@400;500&display=swap" rel="stylesheet">
@@ -23,6 +24,7 @@
   --border:rgba(255,255,255,.08);
 }
 
+/* BASE */
 body{
   font-family:"Inter",system-ui,sans-serif;
   background:
@@ -31,15 +33,20 @@ body{
     linear-gradient(180deg,var(--green-dark),var(--green-mid));
   color:var(--text);
   line-height:1.85;
+  overflow-x:hidden;
 }
 
+/* PROGRESS */
 .progress{
-  position:fixed;top:0;left:0;height:4px;width:0%;
+  position:fixed;
+  top:0;left:0;
+  height:4px;width:0%;
   background:linear-gradient(90deg,var(--gold),var(--gold-soft));
   box-shadow:0 0 14px rgba(214,185,140,.7);
   z-index:999;
 }
 
+/* LAYOUT */
 .wrapper{
   max-width:900px;
   margin:auto;
@@ -66,8 +73,13 @@ p{font-size:17px;margin-bottom:22px}
   color:var(--muted);
 }
 
-.hero{padding-bottom:120px;border-bottom:1px solid var(--border)}
+/* HERO */
+.hero{
+  padding-bottom:120px;
+  border-bottom:1px solid var(--border);
+}
 
+/* PANEL */
 .panel{
   background:rgba(15,42,32,.85);
   padding:70px;
@@ -76,55 +88,7 @@ p{font-size:17px;margin-bottom:22px}
   box-shadow:0 40px 120px rgba(0,0,0,.55);
 }
 
-ul{list-style:none;margin:28px 0}
-li{margin-bottom:14px}
-
-/* === SELF CHECK === */
-.selfcheck{
-  background:rgba(11,31,23,.9);
-  padding:80px;
-  border-radius:28px;
-  border:1px solid var(--border);
-}
-
-.question{
-  margin:34px 0;
-}
-
-.options{
-  display:flex;
-  justify-content:center;
-  gap:18px;
-  margin-top:16px;
-}
-
-.option{
-  padding:10px 22px;
-  border:1px solid var(--border);
-  border-radius:999px;
-  cursor:pointer;
-  transition:all .25s ease;
-}
-
-.option:hover{
-  border-color:var(--gold);
-  color:var(--gold);
-}
-
-.option.active{
-  background:linear-gradient(135deg,var(--gold),var(--gold-soft));
-  color:#0b1f17;
-  border-color:transparent;
-}
-
-.result{
-  margin-top:60px;
-  font-size:18px;
-  color:var(--gold);
-  display:none;
-}
-
-/* === CTA === */
+/* CTA */
 .cta{
   background:rgba(11,31,23,.9);
   padding:90px;
@@ -144,6 +108,7 @@ li{margin-bottom:14px}
   font-weight:600;
   border-radius:999px;
   box-shadow:0 14px 40px rgba(214,185,140,.45);
+  animation:goldBreath 3.8s ease-in-out infinite;
 }
 
 .cta a::after{
@@ -160,8 +125,54 @@ li{margin-bottom:14px}
   85%,100%{left:120%}
 }
 
-.end{margin-top:120px;font-size:18px;color:var(--gold)}
+@keyframes goldBreath{
+  0%,100%{box-shadow:0 14px 40px rgba(214,185,140,.45)}
+  50%{box-shadow:0 22px 55px rgba(214,185,140,.65)}
+}
 
+/* QUESTIONS */
+.selfcheck{
+  background:rgba(11,31,23,.9);
+  padding:80px;
+  border-radius:30px;
+  border:1px solid var(--border);
+}
+
+.question{
+  display:none;
+  margin:40px 0;
+}
+
+.question.active{display:block}
+
+.options{
+  display:flex;
+  justify-content:center;
+  gap:18px;
+  margin-top:20px;
+}
+
+.option{
+  padding:12px 26px;
+  border-radius:999px;
+  border:1px solid var(--border);
+  cursor:pointer;
+  transition:.25s;
+}
+
+.option:hover{
+  border-color:var(--gold);
+  color:var(--gold);
+}
+
+.result{
+  display:none;
+  margin-top:60px;
+  font-size:18px;
+  color:var(--gold);
+}
+
+/* FOOTER */
 footer{margin-top:180px}
 
 @media(max-width:768px){
@@ -178,28 +189,30 @@ footer{margin-top:180px}
 
 <section class="hero visible">
   <h1>FOCUSFORMULA</h1>
-  <p class="muted">
-    Eine ehrliche Entscheidungshilfe für Menschen,<br>
-    die keine Kurse mehr kaufen wollen.
-  </p>
+  <p class="muted">Eine ehrliche Entscheidungshilfe für Menschen,<br>die keine Kurse mehr kaufen wollen.</p>
   <p style="margin-top:40px;color:var(--gold)">
     Vielleicht bist du nicht falsch abgebogen.<br>
     Vielleicht vermeidest du nur eine Entscheidung.
   </p>
 </section>
 
+<!-- CTA -->
 <section>
-  <h2>Für wen es gedacht ist</h2>
-  <p>Für Menschen, die bereits gesucht haben und merken, dass nicht Wissen fehlt – sondern Klarheit.</p>
+  <div class="cta">
+    <h2>Zugang</h2>
+    <p>Dieses Dokument verspricht nichts. Es ordnet ein.</p>
+    <a href="#">Zugang zum Dokument · 10,99 €</a>
+    <div class="trust">Sofortiger Download · Einmalzahlung · Kein Abo · Kein Upsell</div>
+  </div>
 </section>
 
+<!-- SELF CHECK -->
 <section>
   <div class="selfcheck">
-    <h2>Bevor du entscheidest</h2>
-    <p class="muted">Beantworte diese Fragen für dich.  
-    Nicht für ein Ergebnis – sondern für Einordnung.</p>
+    <h2>Wenn du willst, ordne dich kurz ein</h2>
+    <p class="muted">Beantworte die Fragen ehrlich. Nur für dich.</p>
 
-    <div class="question">
+    <div class="question active">
       Willst du etwas langfristig aufbauen – auch ohne sofortiges Feedback?
       <div class="options">
         <div class="option">Eher ja</div>
@@ -225,24 +238,8 @@ footer{margin-top:180px}
 
     <div class="result" id="result">
       Wenn du bei mehreren Fragen gezögert hast,  
-      ist nicht das Modell dein Engpass – sondern die Entscheidung selbst.
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="cta">
-    <h2>Zugang</h2>
-    <p>Dieses Dokument verspricht nichts. Es ordnet ein.</p>
-    <a href="#">Zugang zum Dokument · 10,99 €</a>
-
-    <div class="trust">
-      Sofortiger Download · Einmalzahlung · Kein Abo · Kein Upsell
-    </div>
-
-    <div class="end">
-      Menschen verändern nichts, weil sie zu wenig wissen –  
-      sondern weil sie Entscheidungen vermeiden.
+      ist nicht das Modell dein Engpass –  
+      sondern die Entscheidung selbst.
     </div>
   </div>
 </section>
@@ -258,7 +255,7 @@ footer{margin-top:180px}
 window.addEventListener("scroll",()=>{
   const h=document.documentElement;
   document.getElementById("progress").style.width=
-    ((h.scrollTop)/(h.scrollHeight-h.clientHeight))*100+"%";
+    (h.scrollTop/(h.scrollHeight-h.clientHeight))*100+"%";
 });
 
 /* Reveal */
@@ -272,13 +269,16 @@ const obs=new IntersectionObserver(e=>{
 },{threshold:.2});
 document.querySelectorAll("section").forEach(s=>obs.observe(s));
 
-/* Self check logic */
-document.querySelectorAll(".option").forEach(o=>{
-  o.onclick=()=>{
-    o.parentElement.querySelectorAll(".option").forEach(x=>x.classList.remove("active"));
-    o.classList.add("active");
-    document.getElementById("result").style.display="block";
-  };
+/* Sequential questions */
+const questions=document.querySelectorAll(".question");
+questions.forEach((q,i)=>{
+  q.querySelectorAll(".option").forEach(o=>{
+    o.onclick=()=>{
+      q.classList.remove("active");
+      if(questions[i+1]) questions[i+1].classList.add("active");
+      else document.getElementById("result").style.display="block";
+    };
+  });
 });
 </script>
 
