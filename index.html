@@ -12,7 +12,7 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 
-/* ===== COLORS ===== */
+/* ================= COLORS ================= */
 :root{
   --bg:#0e1320;
   --panel:#111827;
@@ -22,25 +22,26 @@
   --border:rgba(255,255,255,.08);
 }
 
-/* ===== BASE ===== */
+/* ================= BASE ================= */
 body{
   font-family:"Inter", system-ui, sans-serif;
   background:linear-gradient(180deg,#0e1320,#0b1020);
   color:var(--text);
   line-height:1.85;
+  overflow-x:hidden;
 }
 
-/* ===== PROGRESS BAR ===== */
+/* ================= PROGRESS ================= */
 .progress{
   position:fixed;
   top:0;left:0;
   height:4px;
   width:0%;
-  background:linear-gradient(90deg,var(--accent),#fff3c4);
+  background:linear-gradient(90deg,var(--accent),#fff1c1);
   z-index:999;
 }
 
-/* ===== LAYOUT ===== */
+/* ================= LAYOUT ================= */
 .wrapper{
   max-width:900px;
   margin:auto;
@@ -48,18 +49,19 @@ body{
   text-align:center;
 }
 
+/* ================= SECTIONS ================= */
 section{
-  margin-bottom:160px;
+  margin-bottom:180px;
   opacity:0;
-  transform:translateY(32px);
-  transition:opacity .9s ease, transform .9s ease;
+  transform:translateY(40px);
+  transition:opacity 1s ease, transform 1s ease;
 }
 section.visible{
   opacity:1;
   transform:translateY(0);
 }
 
-/* ===== TYPO ===== */
+/* ================= TYPO ================= */
 h1{
   font-family:"Libre Baskerville", serif;
   font-size:clamp(42px,6vw,58px);
@@ -76,75 +78,88 @@ p{
 }
 .muted{color:var(--muted)}
 
-/* ===== INTRO QUESTION ===== */
+/* ================= INTRO QUESTION ================= */
 .intro{
-  margin-bottom:200px;
+  margin-bottom:220px;
 }
 .intro p{
   font-size:20px;
   color:var(--accent);
 }
 
-/* ===== HERO ===== */
+/* ================= HERO ================= */
 .hero{
   padding-bottom:120px;
   border-bottom:1px solid var(--border);
 }
 
-/* ===== PANEL ===== */
+/* ================= PANEL ================= */
 .panel{
   background:var(--panel);
   padding:70px;
   border:1px solid var(--border);
-  border-radius:20px;
+  border-radius:22px;
+  box-shadow:0 40px 120px rgba(0,0,0,.45);
 }
 
-/* ===== LIST ===== */
+/* ================= LIST ================= */
 ul{list-style:none;margin:28px 0}
 li{margin-bottom:14px}
 
-/* ===== CTA ===== */
+/* ================= CTA ================= */
 .cta{
-  padding:80px;
+  padding:90px;
   border:1px solid var(--border);
-  border-radius:24px;
+  border-radius:26px;
   background:#0b1020;
 }
 .cta a{
   display:inline-block;
-  margin-top:34px;
-  padding:16px 40px;
+  margin-top:36px;
+  padding:18px 44px;
   background:linear-gradient(135deg,#e5d3a1,#cbb07a);
   color:#020617;
   text-decoration:none;
   font-weight:600;
-  border-radius:16px;
-  box-shadow:0 12px 30px rgba(214,185,140,.35);
+  border-radius:18px;
+  box-shadow:0 14px 40px rgba(214,185,140,.35);
+  animation:breath 3.5s ease-in-out infinite;
   transition:transform .25s ease, box-shadow .25s ease;
 }
 .cta a:hover{
   transform:translateY(-2px);
-  box-shadow:0 20px 50px rgba(214,185,140,.55);
+  box-shadow:0 22px 60px rgba(214,185,140,.55);
 }
 .cta a:active{
   transform:translateY(0);
 }
+@keyframes breath{
+  0%,100%{box-shadow:0 14px 40px rgba(214,185,140,.35)}
+  50%{box-shadow:0 22px 55px rgba(214,185,140,.55)}
+}
 
-/* ===== END STATEMENT ===== */
+/* ================= KEY SENTENCE ================= */
+.focus{
+  font-size:19px;
+  color:var(--accent);
+  margin:80px 0;
+}
+
+/* ================= END ================= */
 .end{
   margin-top:120px;
   font-size:18px;
   color:var(--accent);
 }
 
-/* ===== FOOTER ===== */
+/* ================= FOOTER ================= */
 footer{
   margin-top:180px;
   font-size:13px;
   color:var(--muted);
 }
 
-/* ===== MOBILE ===== */
+/* ================= MOBILE ================= */
 @media(max-width:768px){
   .wrapper{padding:100px 18px}
   .panel,.cta{padding:44px}
@@ -171,7 +186,7 @@ footer{
     Eine ehrliche Entscheidungshilfe für Menschen,<br>
     die keine Kurse mehr kaufen wollen.
   </p>
-  <p style="margin-top:40px;color:var(--accent)">
+  <p class="focus">
     Vielleicht bist du nicht falsch abgebogen.<br>
     Vielleicht vermeidest du nur eine Entscheidung.
   </p>
@@ -248,7 +263,7 @@ footer{
 
     <div class="end">
       Menschen verändern nichts,
-      weil sie zu wenig wissen –
+      weil sie zu wenig wissen –  
       sondern weil sie Entscheidungen vermeiden.
     </div>
   </div>
@@ -264,21 +279,21 @@ footer{
 /* PROGRESS BAR */
 window.addEventListener("scroll",()=>{
   const h=document.documentElement;
-  const sc=(h.scrollTop||document.body.scrollTop);
+  const sc=h.scrollTop||document.body.scrollTop;
   const max=h.scrollHeight-h.clientHeight;
   document.getElementById("progress").style.width=(sc/max)*100+"%";
 });
 
 /* SCROLL REVEAL */
-const observer=new IntersectionObserver(e=>{
+const obs=new IntersectionObserver(e=>{
   e.forEach(x=>{
     if(x.isIntersecting){
       x.target.classList.add("visible");
-      observer.unobserve(x.target);
+      obs.unobserve(x.target);
     }
   });
-},{threshold:.15});
-document.querySelectorAll("section").forEach(s=>observer.observe(s));
+},{threshold:.2});
+document.querySelectorAll("section").forEach(s=>obs.observe(s));
 </script>
 
 </body>
