@@ -5,7 +5,6 @@
 <title>FOCUSFORMULA</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@400;500;600&family=IBM+Plex+Serif:wght@400;500&display=swap" rel="stylesheet">
@@ -13,44 +12,34 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 
-/* ================= FARBSYSTEM ================= */
 :root{
   --green-dark:#0b1f17;
   --green-mid:#0f2a20;
   --green-soft:#163c2d;
-
   --gold:#d6b98c;
   --gold-soft:#e8d8b0;
-
   --text:#f5f5f4;
   --muted:#9ca3af;
   --border:rgba(255,255,255,.08);
 }
 
-/* ================= BASE ================= */
 body{
-  font-family:"Inter", system-ui, sans-serif;
+  font-family:"Inter",system-ui,sans-serif;
   background:
     radial-gradient(1200px 600px at 20% 10%, #163c2d 0%, transparent 60%),
     radial-gradient(900px 500px at 80% 20%, #0f2a20 0%, transparent 55%),
-    linear-gradient(180deg, var(--green-dark), var(--green-mid));
+    linear-gradient(180deg,var(--green-dark),var(--green-mid));
   color:var(--text);
   line-height:1.85;
-  overflow-x:hidden;
 }
 
-/* ================= PROGRESS BAR ================= */
 .progress{
-  position:fixed;
-  top:0;left:0;
-  height:4px;
-  width:0%;
+  position:fixed;top:0;left:0;height:4px;width:0%;
   background:linear-gradient(90deg,var(--gold),var(--gold-soft));
   box-shadow:0 0 14px rgba(214,185,140,.7);
   z-index:999;
 }
 
-/* ================= LAYOUT ================= */
 .wrapper{
   max-width:900px;
   margin:auto;
@@ -64,53 +53,21 @@ section{
   transform:translateY(40px);
   transition:opacity 1s ease, transform 1s ease;
 }
-section.visible{
-  opacity:1;
-  transform:translateY(0);
-}
+section.visible{opacity:1;transform:translateY(0)}
 
-/* ================= TYPO ================= */
-h1,h2{
-  font-family:"Libre Baskerville", serif;
-}
+h1,h2{font-family:"Libre Baskerville",serif}
+h1{font-size:clamp(42px,6vw,58px);margin-bottom:28px}
+h2{font-size:clamp(28px,4.5vw,34px);margin-bottom:24px}
+p{font-size:17px;margin-bottom:22px}
 
-h1{
-  font-size:clamp(42px,6vw,58px);
-  margin-bottom:28px;
-}
-h2{
-  font-size:clamp(28px,4.5vw,34px);
-  margin-bottom:24px;
-}
-p{
-  font-size:17px;
-  margin-bottom:22px;
-}
-
-/* Small / Meta Text */
-.muted,
-footer,
-.trust,
-small{
-  font-family:"IBM Plex Serif", serif;
-  color:var(--muted);
+.muted,footer,.trust{
+  font-family:"IBM Plex Serif",serif;
   font-size:14.5px;
-  letter-spacing:.2px;
+  color:var(--muted);
 }
 
-/* ================= INTRO ================= */
-.intro p{
-  font-size:20px;
-  color:var(--gold);
-}
+.hero{padding-bottom:120px;border-bottom:1px solid var(--border)}
 
-/* ================= HERO ================= */
-.hero{
-  padding-bottom:120px;
-  border-bottom:1px solid var(--border);
-}
-
-/* ================= PANEL ================= */
 .panel{
   background:rgba(15,42,32,.85);
   padding:70px;
@@ -119,24 +76,65 @@ small{
   box-shadow:0 40px 120px rgba(0,0,0,.55);
 }
 
-/* ================= LIST ================= */
 ul{list-style:none;margin:28px 0}
 li{margin-bottom:14px}
 
-/* ================= CTA ================= */
+/* === SELF CHECK === */
+.selfcheck{
+  background:rgba(11,31,23,.9);
+  padding:80px;
+  border-radius:28px;
+  border:1px solid var(--border);
+}
+
+.question{
+  margin:34px 0;
+}
+
+.options{
+  display:flex;
+  justify-content:center;
+  gap:18px;
+  margin-top:16px;
+}
+
+.option{
+  padding:10px 22px;
+  border:1px solid var(--border);
+  border-radius:999px;
+  cursor:pointer;
+  transition:all .25s ease;
+}
+
+.option:hover{
+  border-color:var(--gold);
+  color:var(--gold);
+}
+
+.option.active{
+  background:linear-gradient(135deg,var(--gold),var(--gold-soft));
+  color:#0b1f17;
+  border-color:transparent;
+}
+
+.result{
+  margin-top:60px;
+  font-size:18px;
+  color:var(--gold);
+  display:none;
+}
+
+/* === CTA === */
 .cta{
   background:rgba(11,31,23,.9);
   padding:90px;
   border-radius:30px;
   border:1px solid var(--border);
-  box-shadow:0 60px 160px rgba(0,0,0,.65);
 }
 
-/* ================= BUTTON ================= */
 .cta a{
   position:relative;
   overflow:hidden;
-
   display:inline-block;
   margin-top:36px;
   padding:18px 46px;
@@ -145,98 +143,29 @@ li{margin-bottom:14px}
   text-decoration:none;
   font-weight:600;
   border-radius:999px;
-
-  box-shadow:
-    0 14px 40px rgba(214,185,140,.45),
-    0 0 0 rgba(22,60,45,0);
-
-  animation:goldBreath 3.8s ease-in-out infinite;
-  transition:transform .25s ease, box-shadow .25s ease, filter .25s ease;
+  box-shadow:0 14px 40px rgba(214,185,140,.45);
 }
 
-.cta a:hover{
-  transform:translateY(-2px);
-  box-shadow:
-    0 22px 60px rgba(214,185,140,.7),
-    0 0 28px rgba(22,60,45,.85);
-  filter:brightness(1.05);
-}
-
-@keyframes goldBreath{
-  0%,100%{
-    box-shadow:
-      0 14px 40px rgba(214,185,140,.45),
-      0 0 0 rgba(22,60,45,0);
-  }
-  50%{
-    box-shadow:
-      0 22px 55px rgba(214,185,140,.65),
-      0 0 22px rgba(22,60,45,.65);
-  }
-}
-
-/* ================= GOLD LIGHT SWEEP ================= */
 .cta a::after{
   content:"";
   position:absolute;
-  top:0;
-  left:-120%;
-  width:120%;
-  height:100%;
-  background:linear-gradient(
-    120deg,
-    transparent 30%,
-    rgba(255,255,255,.45) 50%,
-    transparent 70%
-  );
-  opacity:.6;
-  animation:goldSweep 7s ease-in-out infinite;
+  top:0;left:-120%;
+  width:120%;height:100%;
+  background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,.45) 50%,transparent 70%);
+  animation:sweep 7s ease-in-out infinite;
 }
 
-@keyframes goldSweep{
-  0%,78%{ left:-120%; }
-  85%{ left:120%; }
-  100%{ left:120%; }
+@keyframes sweep{
+  0%,78%{left:-120%}
+  85%,100%{left:120%}
 }
 
-/* ================= TRUST ================= */
-.trust{
-  margin-top:28px;
-  line-height:1.6;
-}
+.end{margin-top:120px;font-size:18px;color:var(--gold)}
 
-/* ================= END ================= */
-.end{
-  margin-top:120px;
-  font-size:18px;
-  color:var(--gold);
-}
-
-/* ================= FOOTER ================= */
-footer{
-  margin-top:180px;
-}
-
-/* ================= MOBILE CTA ================= */
-.mobile-cta{
-  position:fixed;
-  bottom:16px;
-  left:50%;
-  transform:translateX(-50%);
-  background:linear-gradient(135deg,var(--gold),var(--gold-soft));
-  color:#0b1f17;
-  padding:14px 28px;
-  border-radius:999px;
-  font-weight:600;
-  box-shadow:0 12px 40px rgba(214,185,140,.5);
-  display:none;
-  z-index:998;
-}
+footer{margin-top:180px}
 
 @media(max-width:768px){
-  .wrapper{padding:100px 18px}
-  .panel,.cta{padding:44px}
-  .mobile-cta{display:block}
+  .panel,.cta,.selfcheck{padding:44px}
 }
 </style>
 </head>
@@ -244,18 +173,10 @@ footer{
 <body>
 
 <div class="progress" id="progress"></div>
-<a href="#" class="mobile-cta">Zugang</a>
 
 <div class="wrapper">
 
-<section class="intro visible">
-  <p>
-    Wenn du alles wüsstest, was du brauchst –  
-    wärst du dann wirklich noch hier?
-  </p>
-</section>
-
-<section class="hero">
+<section class="hero visible">
   <h1>FOCUSFORMULA</h1>
   <p class="muted">
     Eine ehrliche Entscheidungshilfe für Menschen,<br>
@@ -268,37 +189,51 @@ footer{
 </section>
 
 <section>
-  <h2>Warum dieses Dokument existiert</h2>
-  <p>Online gibt es unzählige Wege, Geld zu verdienen. Und trotzdem bleiben viele Menschen stehen.</p>
-  <p>Nicht, weil sie zu wenig wissen. Sondern weil sie zu viel gehört haben – ohne Einordnung.</p>
-  <p>Dieses Dokument ist entstanden. Nicht aus einer Erfolgsstory, sondern aus der Beobachtung, dass Orientierung heute wertvoller ist als Information.</p>
-</section>
-
-<section>
-  <div class="panel">
-    <h2>Was es ist – und was nicht</h2>
-    <ul>
-      <li>kein Kurs</li>
-      <li>keine Anleitung</li>
-      <li>kein Erfolgsversprechen</li>
-      <li>keine Geheimnisse</li>
-    </ul>
-    <p>Es ist ein strukturiertes Dokument, das dir hilft zu verstehen, welches Business-Modell zu dir passt – und warum andere dich immer wieder leer zurücklassen.</p>
-    <p>Es will dich nicht motivieren. Es will dich ernst nehmen.</p>
-  </div>
-</section>
-
-<section>
   <h2>Für wen es gedacht ist</h2>
-  <p>Für Menschen, die bereits gesucht haben. Die gemerkt haben, dass sie nicht an mangelnder Disziplin scheitern, sondern an fehlender Klarheit.</p>
-  <p>Für Menschen, die aufhören wollen, ständig neu anzufangen – und bereit sind, eine Entscheidung zu tragen.</p>
+  <p>Für Menschen, die bereits gesucht haben und merken, dass nicht Wissen fehlt – sondern Klarheit.</p>
+</section>
+
+<section>
+  <div class="selfcheck">
+    <h2>Bevor du entscheidest</h2>
+    <p class="muted">Beantworte diese Fragen für dich.  
+    Nicht für ein Ergebnis – sondern für Einordnung.</p>
+
+    <div class="question">
+      Willst du etwas langfristig aufbauen – auch ohne sofortiges Feedback?
+      <div class="options">
+        <div class="option">Eher ja</div>
+        <div class="option">Eher nein</div>
+      </div>
+    </div>
+
+    <div class="question">
+      Ist dir Kontrolle wichtiger als schnelle Ergebnisse?
+      <div class="options">
+        <div class="option">Eher ja</div>
+        <div class="option">Eher nein</div>
+      </div>
+    </div>
+
+    <div class="question">
+      Kannst du mit Unsicherheit arbeiten, ohne ständig zu wechseln?
+      <div class="options">
+        <div class="option">Eher ja</div>
+        <div class="option">Eher nein</div>
+      </div>
+    </div>
+
+    <div class="result" id="result">
+      Wenn du bei mehreren Fragen gezögert hast,  
+      ist nicht das Modell dein Engpass – sondern die Entscheidung selbst.
+    </div>
+  </div>
 </section>
 
 <section>
   <div class="cta">
     <h2>Zugang</h2>
     <p>Dieses Dokument verspricht nichts. Es ordnet ein.</p>
-    <p>Wenn du bereit bist, Verantwortung für eine Entscheidung zu übernehmen, findest du hier einen ruhigen Ausgangspunkt.</p>
     <a href="#">Zugang zum Dokument · 10,99 €</a>
 
     <div class="trust">
@@ -319,15 +254,14 @@ footer{
 </div>
 
 <script>
-/* PROGRESS BAR */
+/* Progress */
 window.addEventListener("scroll",()=>{
   const h=document.documentElement;
-  const sc=h.scrollTop||document.body.scrollTop;
-  const max=h.scrollHeight-h.clientHeight;
-  document.getElementById("progress").style.width=(sc/max)*100+"%";
+  document.getElementById("progress").style.width=
+    ((h.scrollTop)/(h.scrollHeight-h.clientHeight))*100+"%";
 });
 
-/* SCROLL REVEAL */
+/* Reveal */
 const obs=new IntersectionObserver(e=>{
   e.forEach(x=>{
     if(x.isIntersecting){
@@ -337,6 +271,15 @@ const obs=new IntersectionObserver(e=>{
   });
 },{threshold:.2});
 document.querySelectorAll("section").forEach(s=>obs.observe(s));
+
+/* Self check logic */
+document.querySelectorAll(".option").forEach(o=>{
+  o.onclick=()=>{
+    o.parentElement.querySelectorAll(".option").forEach(x=>x.classList.remove("active"));
+    o.classList.add("active");
+    document.getElementById("result").style.display="block";
+  };
+});
 </script>
 
 </body>
