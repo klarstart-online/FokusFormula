@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FOCUSFORMULA – Klar denken. Richtig starten.</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --accent:#22c55e;
+  --accent-glow:rgba(34,197,94,.6);
+  --bg:#020617;
+  --panel:rgba(17,24,39,.75);
+  --text:#e5e7eb;
+  --muted:#9ca3af;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:'Inter',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.75;
+  overflow-x:hidden;
+}
+
+/* ===== ANIMATIONS ===== */
+.fade{
+  opacity:0;
+  transform:translateY(70px) scale(.97);
+  transition:1.4s cubic-bezier(.16,1,.3,1);
+}
+.fade.show{opacity:1;transform:none}
+
+.delay1{transition-delay:.15s}
+.delay2{transition-delay:.3s}
+.delay3{transition-delay:.45s}
+
+/* ===== HERO ===== */
+header{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  background:
+    linear-gradient(180deg,rgba(2,6,23,.7),rgba(2,6,23,.95)),
+    url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1800&q=80")
+    center/cover fixed;
+}
+
+.hero{
+  max-width:950px;
+  padding:40px;
+}
+
+h1{
+  font-size:clamp(3rem,6vw,5rem);
+  font-weight:900;
+  letter-spacing:-.03em;
+}
+
+.hero p{
+  font-size:1.25rem;
+  color:var(--muted);
+  margin-top:20px;
+}
+
+/* ===== BUTTON ===== */
+.btn{
+  display:inline-block;
+  margin-top:45px;
+  padding:20px 56px;
+  border-radius:60px;
+  background:linear-gradient(135deg,var(--accent),#4ade80);
+  color:#022c16;
+  font-weight:900;
+  text-decoration:none;
+  box-shadow:0 0 80px var(--accent-glow);
+  transition:.4s cubic-bezier(.16,1,.3,1);
+}
+.btn:hover{
+  transform:scale(1.15);
+  box-shadow:0 0 160px var(--accent-glow);
+}
+
+/* ===== SECTIONS ===== */
+section{
+  max-width:1200px;
+  margin:auto;
+  padding:140px 20px;
+}
+
+.card{
+  background:var(--panel);
+  backdrop-filter:blur(18px);
+  padding:60px;
+  border-radius:32px;
+  box-shadow:0 30px 80px rgba(0,0,0,.6);
+  transition:.4s ease;
+}
+.card:hover{transform:translateY(-6px)}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:40px;
+}
+
+/* ===== PRICE ===== */
+.old-price{
+  text-decoration:line-through;
+  color:#9ca3af;
+  font-size:1.4rem;
+}
+.price{
+  font-size:4.4rem;
+  font-weight:900;
+  color:var(--accent);
+  text-shadow:0 0 50px var(--accent-glow);
+}
+
+/* ===== FOOTER ===== */
+footer{
+  padding:70px 20px;
+  text-align:center;
+  color:var(--muted);
+  font-size:.9rem;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="hero fade">
+    <h1>FOCUSFORMULA</h1>
+    <p>Klar denken. Richtig starten.<br>Die 7 Fehler, die dich online scheitern lassen.</p>
+    <a href="#kaufen" class="btn">Jetzt Klarheit holen</a>
+  </div>
+</header>
+
+<section class="fade delay1">
+  <div class="card">
+    <h2>Das eigentliche Problem</h2>
+    <p>
+      Die meisten scheitern nicht an fehlender Motivation.<br>
+      Sie scheitern, weil sie **ohne Klarheit starten**.<br><br>
+      Ohne Fokus. Ohne System. Ohne zu wissen,
+      welche Schritte sie sich sparen können.
+    </p>
+  </div>
+</section>
+
+<section class="fade delay2">
+  <div class="card">
+    <h2>Warum es FOCUSFORMULA gibt</h2>
+    <p>
+      Immer wieder dieselben Fehler.<br>
+      Immer wieder verlorene Monate.<br><br>
+      Nicht, weil Menschen unfähig sind –  
+      sondern weil sie **zu früh das Falsche tun**.
+    </p>
+  </div>
+</section>
+
+<section class="fade delay3">
+  <h2>Was du nach dem Lesen anders siehst</h2>
+  <div class="grid">
+    <div class="card">✔️ Du erkennst, was du ignorieren kannst</div>
+    <div class="card">✔️ Du hörst auf, jedem Trend zu folgen</div>
+    <div class="card">✔️ Du setzt deine Energie gezielter ein</div>
+  </div>
+</section>
+
+<section class="fade">
+  <div class="card">
+    <h2>Häufige Gedanken</h2>
+    <p>
+      „Nur ein weiteres PDF?“ → Nein. Eine **Fehler-Landkarte**.<br>
+      „Ich habe schon vieles gelesen…“ → Genau deshalb existiert es.<br>
+      „Hilft mir das wirklich?“ → Es verhindert teure Fehlentscheidungen.
+    </p>
+  </div>
+</section>
+
+<section id="kaufen" class="fade">
+  <div class="card" style="text-align:center">
+    <h2>Limitierte Einführung</h2>
+    <div class="old-price">19,99 €</div>
+    <div class="price">10,99 €</div>
+    <p>
+      📘 PDF · Sofortiger Download<br>
+      ⏱️ 30 Minuten · lebenslang nutzbar
+    </p>
+    <a href="https://DEIN-ZAHLUNGSLINK" class="btn">Jetzt kaufen</a>
+  </div>
+</section>
+
+<footer>
+  <p>Keine Einkommensgarantie. Umsetzung entscheidet.</p>
+  <p>© 2025 FOCUSFORMULA</p>
+</footer>
+
+<script>
+const items=document.querySelectorAll('.fade');
+const obs=new IntersectionObserver(e=>{
+  e.forEach(x=>{
+    if(x.isIntersecting){x.target.classList.add('show')}
+  })
+},{threshold:.25});
+items.forEach(i=>obs.observe(i));
+</script>
+
+</body>
+</html>
