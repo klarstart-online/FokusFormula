@@ -13,7 +13,7 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 
-/* ================= COLORS ================= */
+/* ================= FARBSYSTEM ================= */
 :root{
   --green-dark:#0b1f17;
   --green-mid:#0f2a20;
@@ -39,7 +39,7 @@ body{
   overflow-x:hidden;
 }
 
-/* ================= PROGRESS ================= */
+/* ================= PROGRESS BAR ================= */
 .progress{
   position:fixed;
   top:0;left:0;
@@ -132,7 +132,11 @@ li{margin-bottom:14px}
   box-shadow:0 60px 160px rgba(0,0,0,.65);
 }
 
+/* ================= BUTTON ================= */
 .cta a{
+  position:relative;
+  overflow:hidden;
+
   display:inline-block;
   margin-top:36px;
   padding:18px 46px;
@@ -141,11 +145,13 @@ li{margin-bottom:14px}
   text-decoration:none;
   font-weight:600;
   border-radius:999px;
+
   box-shadow:
     0 14px 40px rgba(214,185,140,.45),
     0 0 0 rgba(22,60,45,0);
+
   animation:goldBreath 3.8s ease-in-out infinite;
-  transition:transform .25s ease, box-shadow .25s ease;
+  transition:transform .25s ease, box-shadow .25s ease, filter .25s ease;
 }
 
 .cta a:hover{
@@ -153,14 +159,23 @@ li{margin-bottom:14px}
   box-shadow:
     0 22px 60px rgba(214,185,140,.7),
     0 0 28px rgba(22,60,45,.85);
-}
-  
-/* === GOLD LIGHT SWEEP === */
-.cta a{
-  position:relative;
-  overflow:hidden;
+  filter:brightness(1.05);
 }
 
+@keyframes goldBreath{
+  0%,100%{
+    box-shadow:
+      0 14px 40px rgba(214,185,140,.45),
+      0 0 0 rgba(22,60,45,0);
+  }
+  50%{
+    box-shadow:
+      0 22px 55px rgba(214,185,140,.65),
+      0 0 22px rgba(22,60,45,.65);
+  }
+}
+
+/* ================= GOLD LIGHT SWEEP ================= */
 .cta a::after{
   content:"";
   position:absolute;
@@ -179,28 +194,9 @@ li{margin-bottom:14px}
 }
 
 @keyframes goldSweep{
-  0%,78%{
-    left:-120%;
-  }
-  85%{
-    left:120%;
-  }
-  100%{
-    left:120%;
-  }
-}
-
-@keyframes goldBreath{
-  0%,100%{
-    box-shadow:
-      0 14px 40px rgba(214,185,140,.45),
-      0 0 0 rgba(22,60,45,0);
-  }
-  50%{
-    box-shadow:
-      0 22px 55px rgba(214,185,140,.65),
-      0 0 22px rgba(22,60,45,.65);
-  }
+  0%,78%{ left:-120%; }
+  85%{ left:120%; }
+  100%{ left:120%; }
 }
 
 /* ================= TRUST ================= */
@@ -345,4 +341,3 @@ document.querySelectorAll("section").forEach(s=>obs.observe(s));
 
 </body>
 </html>
-
