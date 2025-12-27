@@ -255,7 +255,48 @@ footer a{
 footer a:hover{
   text-decoration:underline;
 }
-  
+  /* ================= OFFER DESIGN ================= */
+.offer-box{
+  margin:40px auto 20px;
+  padding:26px 22px;
+  max-width:360px;
+  border-radius:18px;
+  background:linear-gradient(
+    160deg,
+    rgba(214,185,140,.12),
+    rgba(15,42,32,.85)
+  );
+  border:1px solid rgba(214,185,140,.35);
+  box-shadow:
+    0 20px 60px rgba(0,0,0,.45),
+    inset 0 0 0 1px rgba(255,255,255,.03);
+  text-align:center;
+}
+
+.old-price{
+  font-size:18px;
+  color:#9ca3af;
+  text-decoration:line-through;
+  letter-spacing:.4px;
+}
+
+.new-price{
+  margin-top:6px;
+  font-size:34px;
+  font-weight:700;
+  color:var(--gold);
+  font-family:"Libre Baskerville", serif;
+  text-shadow:0 0 22px rgba(214,185,140,.45);
+}
+
+.offer-note{
+  margin-top:8px;
+  font-size:13.5px;
+  color:#cbd5d1;
+  font-family:"IBM Plex Serif", serif;
+  letter-spacing:.3px;
+}
+
 </style>
 </head>
 
@@ -310,6 +351,12 @@ footer a:hover{
   <h2>Für wen es gedacht ist</h2>
   <p>Für Menschen, die bereits gesucht haben. Die gemerkt haben, dass sie nicht an mangelnder Disziplin scheitern, sondern an fehlender Klarheit.</p>
   <p>Für Menschen, die aufhören wollen, ständig neu anzufangen – und bereit sind, eine Entscheidung zu tragen.</p>
+  <div class="offer-box">
+  <div class="old-price">23,99 €</div>
+  <div class="new-price">13,99 €</div>
+  <div class="offer-note">Ein bewusster Einstiegspreis</div>
+</div>
+
 </section>
 
 <section>
@@ -361,4 +408,5 @@ document.querySelectorAll("section").forEach(s=>obs.observe(s));
 
 </body>
 </html>
+
 
