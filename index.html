@@ -71,4 +71,229 @@ section.visible{
 
 /* ================= TYPO ================= */
 h1,h2{
-  font-family:"Libre Baskerville",
+  font-family:"Libre Baskerville", serif;
+}
+
+h1{
+  font-size:clamp(42px,6vw,58px);
+  margin-bottom:28px;
+}
+h2{
+  font-size:clamp(28px,4.5vw,34px);
+  margin-bottom:24px;
+}
+p{
+  font-size:17px;
+  margin-bottom:22px;
+}
+
+/* Small / Meta Text */
+.muted,
+footer,
+.trust,
+small{
+  font-family:"IBM Plex Serif", serif;
+  color:var(--muted);
+  font-size:14.5px;
+  letter-spacing:.2px;
+}
+
+/* ================= INTRO ================= */
+.intro p{
+  font-size:20px;
+  color:var(--gold);
+}
+
+/* ================= HERO ================= */
+.hero{
+  padding-bottom:120px;
+  border-bottom:1px solid var(--border);
+}
+
+/* ================= PANEL ================= */
+.panel{
+  background:rgba(15,42,32,.85);
+  padding:70px;
+  border-radius:26px;
+  border:1px solid var(--border);
+  box-shadow:0 40px 120px rgba(0,0,0,.55);
+}
+
+/* ================= LIST ================= */
+ul{list-style:none;margin:28px 0}
+li{margin-bottom:14px}
+
+/* ================= CTA ================= */
+.cta{
+  background:rgba(11,31,23,.9);
+  padding:90px;
+  border-radius:30px;
+  border:1px solid var(--border);
+  box-shadow:0 60px 160px rgba(0,0,0,.65);
+}
+
+/* ================= BUTTON ================= */
+.cta a{
+  position:relative;
+  overflow:hidden;
+  display:inline-block;
+  margin-top:36px;
+  padding:18px 46px;
+  background:linear-gradient(135deg,var(--gold),var(--gold-soft));
+  color:#0b1f17;
+  text-decoration:none;
+  font-weight:600;
+  border-radius:999px;
+  box-shadow:0 14px 40px rgba(214,185,140,.45);
+  animation:goldBreath 3.8s ease-in-out infinite;
+}
+
+@keyframes goldBreath{
+  0%,100%{box-shadow:0 14px 40px rgba(214,185,140,.45)}
+  50%{box-shadow:0 22px 55px rgba(214,185,140,.65)}
+}
+
+/* ================= TRUST ================= */
+.trust{
+  margin-top:28px;
+  line-height:1.6;
+}
+
+/* ================= END ================= */
+.end{
+  margin-top:120px;
+  font-size:18px;
+  color:var(--gold);
+}
+
+/* ================= FOOTER ================= */
+footer{
+  margin-top:180px;
+  padding:40px 20px;
+  border-top:1px solid var(--border);
+  text-align:center;
+}
+
+/* === HINZUGEFÜGT: Footer-Links sichtbar === */
+footer a{
+  color:var(--muted);
+  margin:0 8px;
+  text-decoration:none;
+}
+footer a:hover{
+  color:var(--gold);
+  text-decoration:underline;
+}
+
+/* ================= MOBILE CTA ================= */
+.mobile-cta{
+  position:fixed;
+  bottom:16px;
+  left:50%;
+  transform:translateX(-50%);
+  background:linear-gradient(135deg,var(--gold),var(--gold-soft));
+  color:#0b1f17;
+  padding:14px 28px;
+  border-radius:999px;
+  font-weight:600;
+  box-shadow:0 12px 40px rgba(214,185,140,.5);
+  display:none;
+  z-index:998;
+}
+
+@media(max-width:768px){
+  .wrapper{padding:100px 18px}
+  .panel,.cta{padding:44px}
+  .mobile-cta{display:block}
+}
+</style>
+</head>
+
+<body>
+
+<div class="progress" id="progress"></div>
+<a href="#" class="mobile-cta">Zugang</a>
+
+<div class="wrapper">
+
+<section class="intro visible">
+  <p>
+    Wenn du alles wüsstest, was du brauchst –  
+    wärst du dann wirklich noch hier?
+  </p>
+</section>
+
+<section class="hero">
+  <h1>FOCUSFORMULA</h1>
+  <p class="muted">
+    Eine ehrliche Entscheidungshilfe für Menschen,<br>
+    die keine Kurse mehr kaufen wollen.
+  </p>
+  <p style="margin-top:40px;color:var(--gold)">
+    Vielleicht bist du nicht falsch abgebogen.<br>
+    Vielleicht vermeidest du nur eine Entscheidung.
+  </p>
+</section>
+
+<section>
+  <h2>Warum dieses Dokument existiert</h2>
+  <p>Online gibt es unzählige Wege, Geld zu verdienen. Und trotzdem bleiben viele Menschen stehen.</p>
+  <p>Nicht, weil sie zu wenig wissen. Sondern weil sie zu viel gehört haben – ohne Einordnung.</p>
+  <p>Dieses Dokument ist entstanden. Nicht aus einer Erfolgsstory, sondern aus der Beobachtung, dass Orientierung heute wertvoller ist als Information.</p>
+</section>
+
+<section>
+  <div class="panel">
+    <h2>Was es ist – und was nicht</h2>
+    <ul>
+      <li>kein Kurs</li>
+      <li>keine Anleitung</li>
+      <li>kein Erfolgsversprechen</li>
+      <li>keine Geheimnisse</li>
+    </ul>
+    <p>Es ist ein strukturiertes Dokument, das dir hilft zu verstehen, welches Business-Modell zu dir passt – und warum andere dich immer wieder leer zurücklassen.</p>
+    <p>Es will dich nicht motivieren. Es will dich ernst nehmen.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Für wen es gedacht ist</h2>
+  <p>Für Menschen, die bereits gesucht haben. Die gemerkt haben, dass sie nicht an mangelnder Disziplin scheitern, sondern an fehlender Klarheit.</p>
+  <p>Für Menschen, die aufhören wollen, ständig neu anzufangen – und bereit sind, eine Entscheidung zu tragen.</p>
+</section>
+
+<section>
+  <div class="cta">
+    <h2>Zugang</h2>
+    <p>Dieses Dokument verspricht nichts. Es ordnet ein.</p>
+    <p>Wenn du bereit bist, Verantwortung für eine Entscheidung zu übernehmen, findest du hier einen ruhigen Ausgangspunkt.</p>
+    <a href="#">Zugang zum Dokument · 10,99 €</a>
+    <div class="trust">
+      Sofortiger Download · Einmalzahlung · Kein Abo · Kein Upsell
+    </div>
+    <div class="end">
+      Menschen verändern nichts, weil sie zu wenig wissen –  
+      sondern weil sie Entscheidungen vermeiden.
+    </div>
+  </div>
+</section>
+
+<footer>
+© 2025 FOCUSFORMULA · Klarheit statt Überreden<br><br>
+<a href="impressum.html">Impressum</a> ·
+<a href="datenschutz.html">Datenschutz</a>
+</footer>
+
+</div>
+
+<script>
+window.addEventListener("scroll",()=>{
+  const h=document.documentElement;
+  const sc=h.scrollTop||document.body.scrollTop;
+  const max=h.scrollHeight-h.clientHeight;
+  document.getElementById("progress").style.width=(sc/max)*100+"%";
+});
+</script>
+
+</body>
+</html>
