@@ -136,6 +136,7 @@ li{margin-bottom:14px}
 .cta a{
   position:relative;
   overflow:hidden;
+
   display:inline-block;
   margin-top:36px;
   padding:18px 46px;
@@ -144,13 +145,58 @@ li{margin-bottom:14px}
   text-decoration:none;
   font-weight:600;
   border-radius:999px;
-  box-shadow:0 14px 40px rgba(214,185,140,.45);
+
+  box-shadow:
+    0 14px 40px rgba(214,185,140,.45),
+    0 0 0 rgba(22,60,45,0);
+
   animation:goldBreath 3.8s ease-in-out infinite;
+  transition:transform .25s ease, box-shadow .25s ease, filter .25s ease;
+}
+
+.cta a:hover{
+  transform:translateY(-2px);
+  box-shadow:
+    0 22px 60px rgba(214,185,140,.7),
+    0 0 28px rgba(22,60,45,.85);
+  filter:brightness(1.05);
 }
 
 @keyframes goldBreath{
-  0%,100%{box-shadow:0 14px 40px rgba(214,185,140,.45)}
-  50%{box-shadow:0 22px 55px rgba(214,185,140,.65)}
+  0%,100%{
+    box-shadow:
+      0 14px 40px rgba(214,185,140,.45),
+      0 0 0 rgba(22,60,45,0);
+  }
+  50%{
+    box-shadow:
+      0 22px 55px rgba(214,185,140,.65),
+      0 0 22px rgba(22,60,45,.65);
+  }
+}
+
+/* ================= GOLD LIGHT SWEEP ================= */
+.cta a::after{
+  content:"";
+  position:absolute;
+  top:0;
+  left:-120%;
+  width:120%;
+  height:100%;
+  background:linear-gradient(
+    120deg,
+    transparent 30%,
+    rgba(255,255,255,.45) 50%,
+    transparent 70%
+  );
+  opacity:.6;
+  animation:goldSweep 7s ease-in-out infinite;
+}
+
+@keyframes goldSweep{
+  0%,78%{ left:-120%; }
+  85%{ left:120%; }
+  100%{ left:120%; }
 }
 
 /* ================= TRUST ================= */
@@ -169,20 +215,6 @@ li{margin-bottom:14px}
 /* ================= FOOTER ================= */
 footer{
   margin-top:180px;
-  padding:40px 20px;
-  border-top:1px solid var(--border);
-  text-align:center;
-}
-
-/* === HINZUGEFÜGT: Footer-Links sichtbar === */
-footer a{
-  color:var(--muted);
-  margin:0 8px;
-  text-decoration:none;
-}
-footer a:hover{
-  color:var(--gold);
-  text-decoration:underline;
 }
 
 /* ================= MOBILE CTA ================= */
@@ -268,9 +300,11 @@ footer a:hover{
     <p>Dieses Dokument verspricht nichts. Es ordnet ein.</p>
     <p>Wenn du bereit bist, Verantwortung für eine Entscheidung zu übernehmen, findest du hier einen ruhigen Ausgangspunkt.</p>
     <a href="#">Zugang zum Dokument · 10,99 €</a>
+
     <div class="trust">
       Sofortiger Download · Einmalzahlung · Kein Abo · Kein Upsell
     </div>
+
     <div class="end">
       Menschen verändern nichts, weil sie zu wenig wissen –  
       sondern weil sie Entscheidungen vermeiden.
@@ -287,12 +321,24 @@ footer a:hover{
 </div>
 
 <script>
+/* PROGRESS BAR */
 window.addEventListener("scroll",()=>{
   const h=document.documentElement;
   const sc=h.scrollTop||document.body.scrollTop;
   const max=h.scrollHeight-h.clientHeight;
   document.getElementById("progress").style.width=(sc/max)*100+"%";
 });
+
+/* SCROLL REVEAL */
+const obs=new IntersectionObserver(e=>{
+  e.forEach(x=>{
+    if(x.isIntersecting){
+      x.target.classList.add("visible");
+      obs.unobserve(x.target);
+    }
+  });
+},{threshold:.2});
+document.querySelectorAll("section").forEach(s=>obs.observe(s));
 </script>
 
 </body>
